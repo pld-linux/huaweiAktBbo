@@ -10,6 +10,7 @@ Source0:	http://www.kanoistika.sk/bobovsky/archiv/umts/%{name}.c
 # Source0-md5:	07341a64e0508aa1ab7eff3d8f9e6672
 Source1:	http://www.kanoistika.sk/bobovsky/archiv/umts/huaweie220.txt
 # Source1-md5:	c619c39e7b636b9820094964953cf257
+Source2:	%{name}-udev.rules
 URL:		http://www.kanoistika.sk/bobovsky/archiv/umts/
 BuildRequires:	libusb-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -22,22 +23,24 @@ storag device and allows to use E220 as modem.
 Jądro Linuksa wykrywa HUAWEI E220 jako CDROM. Ten program wyłącza
 "storage device" i pozwala korzystać z E220 jako z modemu.
 
-%if 0
 %package udev
 ######		Unknown group!
-Summary:	udev rules for huaweiAktBbo
-Summary(pl.UTF-8):	Reguły udev dla huaweiAktBbo
-Group:		-
+Summary:	Udev rules for huaweiAktBbo
+Summary(pl.UTF-8):	Reguła udev dla huaweiAktBbo
+Group:		Application
 
 %description udev
+Udev rule that executes huaweiAktBbo.
 
 %description udev -l pl.UTF-8
-%endif
+Reguła udev która automatycznie uruchamia wukonuje program
+huaweiAktBbo po podłączeniu modemu.
 
 %prep
 %setup -q -c -T
 cp %{SOURCE0} .
 cp %{SOURCE1} README.sk.txt
+cp %{SOURCE2} 75-huawei-e220.rules
 
 %build
 
@@ -45,9 +48,10 @@ cp %{SOURCE1} README.sk.txt
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sbindir}
+install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/udev/rules.d}
 
 install huaweiAktBbo $RPM_BUILD_ROOT%{_sbindir}/huaweiAktBbo
+install 75-huawei-e220.rules $RPM_BUILD_ROOT/etc/udev/rules.d/75-huawei-e220.rules
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -56,3 +60,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.sk.txt
 %attr(755,root,root) %{_sbindir}/huaweiAktBbo
+
+%files udev
+%defattr(644,root,root,755)
+/etc/udev/rules.d/75-huawei-e220.rules
