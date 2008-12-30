@@ -1,0 +1,3 @@
+# Activate HUAWEI E220 modem
+#
+SUBSYSTEM=="usb", SYSFS{idProduct}=="1003", SYSFS{idVendor}=="12d1", RUN+="/sbin/huaweiAktBbo"
