@@ -6,7 +6,7 @@ Version:	20061211
 Release:	0.1
 License:	GPL v2
 Group:		Applications
-Source0:	http://www.kanoistika.sk/bobovsky/archiv/umts/huaweiAktBbo.c
+Source0:	http://www.kanoistika.sk/bobovsky/archiv/umts/%{name}.c
 # Source0-md5:	07341a64e0508aa1ab7eff3d8f9e6672
 Source1:	http://www.kanoistika.sk/bobovsky/archiv/umts/huaweie220.txt
 # Source1-md5:	c619c39e7b636b9820094964953cf257
@@ -19,11 +19,12 @@ Linux kernel detects HUAWEI E220 as CDROM. This program disables this
 storag device and allows to use E220 as modem.
 
 %description -l pl.UTF-8
-Jądro Linuksa wykrywa HUAWEI E220 jako CDROM. Ten program wyłącza "storage
-device" i pozwala korzystać z E220 jako z modemu.
+Jądro Linuksa wykrywa HUAWEI E220 jako CDROM. Ten program wyłącza
+"storage device" i pozwala korzystać z E220 jako z modemu.
 
 %if 0
 %package udev
+######		Unknown group!
 Summary:	udev rules for huaweiAktBbo
 Summary(pl.UTF-8):	Reguły udev dla huaweiAktBbo
 Group:		-
@@ -40,7 +41,7 @@ cp %{SOURCE1} README.sk.txt
 
 %build
 
-gcc huaweiAktBbo.c -ohuaweiAktBbo -lusb
+%{__cc} huaweiAktBbo.c -ohuaweiAktBbo -lusb
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -54,4 +55,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.sk.txt
-%{_sbindir}/huaweiAktBbo
+%attr(755,root,root) %{_sbindir}/huaweiAktBbo
