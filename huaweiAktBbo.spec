@@ -3,7 +3,7 @@ Summary:	HUAWEI E220 modem activator
 Summary(pl.UTF-8):	Aktywator modemu HUAWEI E220
 Name:		huaweiAktBbo
 Version:	20061211
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Applications
 Source0:	http://www.kanoistika.sk/bobovsky/archiv/umts/%{name}.c
@@ -24,7 +24,7 @@ Jądro Linuksa wykrywa HUAWEI E220 jako CDROM. Ten program wyłącza
 "storage device" i pozwala korzystać z E220 jako z modemu.
 
 %package udev
-######		Unknown group!
+Group:		Applications
 Summary:	Udev rules for huaweiAktBbo
 Summary(pl.UTF-8):	Reguła udev dla huaweiAktBbo
 Group:		Application
