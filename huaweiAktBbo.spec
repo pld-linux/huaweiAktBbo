@@ -38,20 +38,18 @@ huaweiAktBbo po podłączeniu modemu.
 
 %prep
 %setup -q -c -T
-cp %{SOURCE0} .
-cp %{SOURCE1} README.sk.txt
-cp %{SOURCE2} 75-huawei-e220.rules
 
 %build
 
-%{__cc} huaweiAktBbo.c -ohuaweiAktBbo -lusb
+%{__cc} %{SOURCE0} -o %{name} -lusb
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/udev/rules.d}
 
 install huaweiAktBbo $RPM_BUILD_ROOT%{_sbindir}/huaweiAktBbo
-install 75-huawei-e220.rules $RPM_BUILD_ROOT/etc/udev/rules.d/75-huawei-e220.rules
+install %{SOURCE1} README.sk.txt
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/udev/rules.d/75-huawei-e220.rules
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -59,7 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.sk.txt
-%attr(755,root,root) %{_sbindir}/huaweiAktBbo
+%attr(755,root,root) %{_sbindir}/%{name}
 
 %files udev
 %defattr(644,root,root,755)
