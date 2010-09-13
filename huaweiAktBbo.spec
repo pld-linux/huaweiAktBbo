@@ -24,10 +24,9 @@ Jądro Linuksa wykrywa HUAWEI E220 jako CDROM. Ten program wyłącza
 "storage device" i pozwala korzystać z E220 jako z modemu.
 
 %package udev
-Group:		Applications
 Summary:	Udev rules for huaweiAktBbo
 Summary(pl.UTF-8):	Reguła udev dla huaweiAktBbo
-Group:		Application
+Group:		Applications
 
 %description udev
 Udev rule that executes huaweiAktBbo.
