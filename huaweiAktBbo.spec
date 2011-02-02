@@ -12,7 +12,7 @@ Source1:	http://www.kanoistika.sk/bobovsky/archiv/umts/huaweie220.txt
 # Source1-md5:	c619c39e7b636b9820094964953cf257
 Source2:	%{name}-udev.rules
 URL:		http://www.kanoistika.sk/bobovsky/archiv/umts/
-BuildRequires:	libusb-devel
+BuildRequires:	libusb-compat-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -40,7 +40,8 @@ huaweiAktBbo po podłączeniu modemu.
 
 %build
 
-%{__cc} %{SOURCE0} -o %{name} -lusb
+%{__cc} %{rpmcppflags} %{rpmcflags} %{rpmldflags} \
+	%{SOURCE0} -o %{name} -lusb
 
 %install
 rm -rf $RPM_BUILD_ROOT
