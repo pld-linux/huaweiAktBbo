@@ -3,7 +3,7 @@ Summary:	HUAWEI E220 modem activator
 Summary(pl.UTF-8):	Aktywator modemu HUAWEI E220
 Name:		huaweiAktBbo
 Version:	20061211
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications
 Source0:	http://www.kanoistika.sk/bobovsky/archiv/umts/%{name}.c
